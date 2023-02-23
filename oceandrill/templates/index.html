@@ -1,0 +1,159 @@
+{% extends "base.html" %}
+{% block title %}
+ Ocean Drill
+{% endblock title %}
+
+{% block content %}
+<!-- --------------------------------------------------------------------------------home page contaienr------------------------------------------------------------ -->
+  <section class="home-page-container">
+    <div class="center-title">
+     <h1><span id="ocean" >Ocean</span> <span id="drill"> Drill</span></h1>
+     <span><img id="drill-logo" src="/oceandrill/static/img/drill logo.png" alt=""></span>
+     <p >Leading Drilling Company.</p>
+     <a href="" id="get-quote-btt" >Get Quote</a>
+    </div>
+  </section>
+
+<!-- --------------------------------------------------------------------------------about us container------------------------------------------------------------ -->
+
+  <section class="about-us-container">
+    <div class="about-us-content">
+      <h1>Welcome To Ocean Drill Limited.</h1>
+      <p>Ocean Drill Ltd. is recognized as one of the most leading and reliable multi disciplinary bore-well drilling contractors in India and Kenya, and we are expanding our operations all over the world.
+  
+        The company has been offering best solutions for all kinds of water related problems. Our highly experienced drilling operators and dedicated technical personnel are integral part of the company who has perfection in bore well drilling.</p>
+        <img id="well-img"src="/oceandrill/static/img/pexels-sushil-shrestha-10583851.jpg" alt="">
+        <a href="" id="see-more-btt">See more</a>
+    </div>
+  </section>
+<!-- --------------------------------------------------------------------------------why containerr------------------------------------------------------------ -->
+
+  <section class="why-container">
+    <h1 id="why-ocean-drill">Why Ocean Drill</h1>
+    <div class="container">
+      <img src="/oceandrill/static/img/undraw_services_re_hu5n.svg" alt="star logo">
+      <h2>Quality of service</h2>
+      <p>We carry out the work efficiently and complete it on time. We pledge to continuously innovate and upgrade in order to maintain industry standards.</p>
+    </div>
+    <div class="container">
+      <img src="/oceandrill/static/img/undraw_pilates_ftsd.svg" alt="thumb logo">
+      <h2>Flexibility</h2>
+      <p>We work closely with our valued customers, who hail from diverse geographical and cultural backgrounds. We hold our client`s beliefs and values system in high esteem.</p>
+
+    </div>
+    <div class="container">
+      <img src="/oceandrill/static/img/undraw_random_thoughts_re_cob6.svg" alt="hands logo">
+      <h2>Simplicity</h2>
+      <p>Uncompromising integrity, honesty, fairness and respect are at the heart of our company. Mutual respect is a guiding principle irrespective of client`s background and culture.</p>
+  
+    </div>
+    <div class="container">
+      <img src="/oceandrill/static/img/undraw_education_f8ru.svg" alt="graduation logo">
+      <h2>Sustainability</h2>
+      <p>The Company is always open for new technological innovations and up-gradation. The long- term benefit that our business provides is not just restricted to the company alone but also for the customers and the larger society.</p>
+    
+    </div>
+    <a href="" id="learn-more">Learn More</a>
+  </section>
+
+<!-- --------------------------------------------------------------------------------number container------------------------------------------------------------ -->
+
+  <section class="numbers-section">
+    <div class="numbers-container">
+      <div class="number-container" data-target="600">
+        <h2 class="number-heading">Projects</h2>
+        <span class="number">0 </span>
+      </div>
+      <div class="number-container" data-target="60">
+        <h2 class="number-heading">Experienced Workers</h2>
+        <span class="number">0</span>
+      </div>
+      <div class="number-container" data-target="5">
+        <h2 class="number-heading">Drilling Machines</h2>
+        <span class="number">0</span>
+      </div>
+      <div class="number-container"data-target="25">
+        <h2 class="number-heading">Years Of Experience</h2>
+        <span class="number">0</span>
+      </div>
+    </div>
+  </section>
+  <!-- --------------------------------------------------------------------------------our work container------------------------------------------------------------ -->
+
+  <section class="our-work-section">
+    <h1>Our Latest Work</h1>
+    <div class="img-container">
+      <div class="img-card">
+        <div class="img-description"><p>Image Description</p></div>
+        
+      </div>
+      <div class="img-card">
+        <div class="img-description"><p>Image Description</p></div>
+        
+      </div>
+      <div class="img-card">
+        <div class="img-description"><p>Image Description</p></div>
+        
+      </div>
+      <div class="img-card">
+        <div class="img-description"><p>Image Description</p></div>
+        
+      </div>
+      <div class="img-card">
+        <div class="img-description"><p>Image Description</p></div>
+        
+      </div>
+      <div class="img-card">
+        <div class="img-description"><p>Image Description</p></div>
+        
+      </div>
+    </div>
+    <a href=""id="view-more">View Our Gallery</a>
+  </section>
+  <!-- --------------------------------------------------------------------------------contact us section------------------------------------------------------------ -->
+  <section class="contact-us-section">
+    <h1>We are interested in hearing from you. <br> Write about your primary interest right now!</h1>
+    <a href="" id="contact-us-sec-btt">Contact Us</a>
+  </section>
+<!-- --------------------------------------------------------------------------------scripts------------------------------------------------------------ -->
+<script>
+  const options = {
+    root: null,
+    rootMargin: '0px',
+    threshold: 0.5
+
+  };
+  
+  const numbers = document.querySelectorAll('.number');
+  const observer = new IntersectionObserver(function(entries, observer) {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const increment = setInterval(() => {
+          numbers.forEach(number => {
+            const currentValue = parseInt(number.textContent);
+            const targetValue = parseInt(number.dataset.target);
+            if (currentValue < targetValue) {
+              number.textContent = currentValue + 1;
+            }
+          });
+          const isFinished = Array.from(numbers).every(number => {
+            const currentValue = parseInt(number.textContent);
+            const targetValue = parseInt(number.dataset.target);
+            return currentValue === targetValue;
+          });
+          if (isFinished) {
+            clearInterval(increment);
+          }
+        }, 10);
+      }
+    });
+  }, options);
+  
+  numbers.forEach(number => {
+    const numberContainer = number.closest('.number-container');
+    const targetValue = parseInt(numberContainer.dataset.target);
+    number.dataset.target = targetValue;
+    observer.observe(numberContainer);
+  });
+</script>
+{% endblock content %}
